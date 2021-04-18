@@ -4,28 +4,30 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 var box1 ,box2 , box3 ;
-var papper1;
-function preload()
-{
+var paper1;
+var groundd
+
+
 	
-}
+
 
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(900, 900);
 
 
 	engine = Engine.create();
 	world = engine.world;
 
 	//Create the Bodies Here.
-	box1=createSprite(500,660,200,10);
-    box2=createSprite(400,590,10,150);
-	box3=createSprite(600,590,10,150);
+	box1=new box (500,660,200,10);
+    box2=new box (400,590,10,150);
+	box3=new box (600,590,10,150);
 	box1.shapeColor=("red")
     box2.shapeColor=("red")
     box3.shapeColor=("red")
+	groundd = new ground(400,700,800,20)
 
-	papper1 = new paper(10,10,10);
+	paper1 = new paper(200,200,10);
 
 
 	Engine.run(engine);
@@ -36,9 +38,18 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
-  papper1.display();
+  paper1.display();
+  box1.display();
+  box2.display();
+  box3.display();
+  groundd.display();
   
  
+}
+function keyPressed() {
+if (keyCode === UP_ARROW) {
+	Matter.Body.applyForce(paper1.body,paper1.body.position,{x:3,y:-4})
+}	
 }
 
 
